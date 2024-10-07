@@ -1,0 +1,19 @@
+{{- with .Values.sso.realm }}
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  name: {{ .name }} 
+  labels:
+    app: sso
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  realm:
+    id: {{ .id | quote }}
+    realm: {{ .id | quote }}
+    enabled: True
+    displayName: {{ .displayName | quote }}
+  instanceSelector:
+    matchLabels:
+      app: sso
+{{- end }}

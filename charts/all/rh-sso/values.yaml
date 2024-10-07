@@ -1,0 +1,46 @@
+# Default values for rh-sso.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+global:
+  pattern: true
+
+namespace:
+  create: false
+
+keycloak:
+  replicaCount: 1
+  imagePullPolicy: Always
+  name: keycloak
+  namespace: rhsso
+
+database:
+  imagePullPolicy: Always
+# If deploying this to a production enviroment, we will need to configure an external postgres database
+  # external:
+sso:
+  client:
+    name:
+    id:
+    secret:
+  realm:
+    name: vp-realm
+    id: vp-realm
+    enabled: #Default true
+    displayName: Validated Patterns Realm
+  users:
+  - name:
+    first: {}
+    lastName: {}
+    email: {}
+    enabled: #Default true
+    emailVerified: #Default false
+    realmRoles: #Default "offline_access"
+    clientRoles:
+      account:
+      realm-management:
+
+#Values for external secret use
+# 
+
+#storageClass to use with keycloak deployed postgresql
+storageClassName: gp3-csi
