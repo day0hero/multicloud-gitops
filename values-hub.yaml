@@ -5,18 +5,21 @@ clusterGroup:
     - open-cluster-management
     - vault
     - golang-external-secrets
-    - config-demo
-    - hello-world
+    - rhsso
   subscriptions:
     acm:
       name: advanced-cluster-management
       namespace: open-cluster-management
       channel: release-2.11
       #csv: advanced-cluster-management.v2.6.1
+    rhsso:
+      name: rhsso-operator
+      namespace: rhsso
+      channel: stable
+
   projects:
     - hub
-    - config-demo
-    - hello-world
+    - keycloak
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
@@ -58,16 +61,11 @@ clusterGroup:
       namespace: golang-external-secrets
       project: hub
       path: common/golang-external-secrets
-    config-demo:
-      name: config-demo
-      namespace: config-demo
-      project: config-demo
-      path: charts/all/config-demo
-    hello-world:
-      name: hello-world
-      namespace: hello-world
-      project: hello-world
-      path: charts/all/hello-world
+    keycloak:
+      name: keycloak
+      namespace: rhsso
+      project: keycloak
+      path: charts/all/rh-sso
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
