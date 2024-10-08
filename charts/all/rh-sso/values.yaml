@@ -4,6 +4,7 @@
 global:
   pattern: true
 
+# If we're not deploying as part of the patterns framework, we may need to create the namespace
 namespace:
   create: false
 
@@ -22,25 +23,23 @@ database:
 # See examples below for adding multiple clients, realms and users
 sso:
   client:
-  - name: vp-client
+  - name: vp-default-client
   realm:
-  - name: vp-realm
-    id: vp-realm
+  - name: vp-default-realm
+    id: vp-default-realm
     enabled: true #Default true
-    displayName: Validated Patterns Realm
+    displayName: Default Validated Patterns Realm
   users:
-  - userName: vp-user-dflt
-    firstName: validated
-    lastName: pattern
-    email: validatedpatterns@redhat.com
+  - userName: default-vp-user
+    firstName: Default
+    lastName: PatternUser
+    email: default@example.com
     enabled: true #Default true
     emailVerified: false #Default false
     realmRoles: "offline_access" #Default "offline_access"
     clientRoles:
       account: "manage-account"
       realm-management: "manage-users"
-
-#Values for external secret use
 
 #storageClass to use with keycloak deployed postgresql
 storageClassName: gp3-csi

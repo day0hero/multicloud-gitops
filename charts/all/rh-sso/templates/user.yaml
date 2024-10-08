@@ -4,6 +4,9 @@ apiVersion: keycloak.org/v1alpha1
 kind: KeycloakUser
 metadata:
   name: sso-{{ .userName }}
+  namespace: {{ default "rhsso" $.Values.keycloak.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 spec:
   user:
     username: {{ .userName | quote }}

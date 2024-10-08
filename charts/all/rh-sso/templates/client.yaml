@@ -4,6 +4,7 @@ apiVersion: keycloak.org/v1alpha1
 kind: KeycloakClient
 metadata:
   name: {{ .name }}
+  namespace: {{ default "rhsso" $.Values.keycloak.namespace }}
   labels:
     app: sso
   annotations:
@@ -15,6 +16,6 @@ spec:
   client:
     # auto-generated if not supplied
     #id: 123
-    clientId: client-secret
-    secret: client-secret
+    clientId: {{ .name }}
+    secret: {{ .name }}-secret
 {{- end }}
