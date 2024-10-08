@@ -1,0 +1,19 @@
+{{- with .Values.sso.client }}
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakClient
+metadata:
+  name: {{ .name }}
+  labels:
+    app: sso
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  realmSelector:
+     matchLabels:
+      app: sso
+  client:
+    # auto-generated if not supplied
+    #id: 123
+    clientId: {{ .id }} #could potentially be eso
+    secret: {{ .secret }} #could potentially be eso
+{{- end }}
