@@ -19,11 +19,12 @@ database:
 # If deploying this to a production enviroment, we will need to configure an external postgres database
   # external:
 
+# See examples below for adding multiple clients, realms and users
 sso:
   client:
-    name: vp-client
+  - name: vp-client
   realm:
-    name: vp-realm
+  - name: vp-realm
     id: vp-realm
     enabled: true #Default true
     displayName: Validated Patterns Realm
@@ -43,3 +44,21 @@ sso:
 
 #storageClass to use with keycloak deployed postgresql
 storageClassName: gp3-csi
+
+
+# Example configs:
+# You can add multiple clients, realms and users but adding another item in the list:
+# sso:
+#   client:
+#   - name: client01
+#   - name: client02
+#   realm:
+#   - name: realm01
+#     id: realm01
+#     enabled: true
+#     displayName: realm 01
+#   - name: realm02
+#     id: realm02
+#     enabled: true
+#     displayName: realm 02
+
