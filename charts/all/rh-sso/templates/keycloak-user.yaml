@@ -1,0 +1,25 @@
+{{- range .Values.sso.users }}
+---
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakUser
+metadata:
+  name: sso-{{ .userName }}
+spec:
+  user:
+    username: {{ .userName | quote }}
+    firstName: {{ .firstName | quote }}
+    lastName: {{ .lastName | quote }}
+    email: {{ .email | quote }}
+    enabled: {{ default true .enabled }}
+    emailVerified: {{ default false .emailVerified }}
+    realmRoles:
+      - {{ .realmRoles | quote }}
+    clientRoles:
+      account:
+        - "manage-account"
+      realm-management:
+        - "manage-users"
+  realmSelector:
+    matchLabels:
+      app: sso
+{{- end }}
