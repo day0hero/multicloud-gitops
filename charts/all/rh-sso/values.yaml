@@ -19,7 +19,7 @@ database:
   # external:
 sso:
   client:
-    name:
+    name: vp-client
     id:
     secret:
   realm:
