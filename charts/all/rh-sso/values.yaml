@@ -20,27 +20,24 @@ database:
 sso:
   client:
     name: vp-client
-    id:
-    secret:
   realm:
     name: vp-realm
     id: vp-realm
-    enabled: #Default true
+    enabled: true #Default true
     displayName: Validated Patterns Realm
   users:
-  - name:
-    first: {}
-    lastName: {}
-    email: {}
-    enabled: #Default true
-    emailVerified: #Default false
-    realmRoles: #Default "offline_access"
+  - userName: vp-user-dflt
+    firstName: validated
+    lastName: pattern
+    email: validatedpatterns@redhat.com
+    enabled: true #Default true
+    emailVerified: false #Default false
+    realmRoles: "offline_access" #Default "offline_access"
     clientRoles:
-      account:
-      realm-management:
+      account: "manage-account"
+      realm-management: "manage-users"
 
 #Values for external secret use
-# 
 
 #storageClass to use with keycloak deployed postgresql
 storageClassName: gp3-csi
