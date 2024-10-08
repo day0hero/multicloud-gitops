@@ -1,4 +1,5 @@
-{{- with .Values.sso.realm }}
+{{- range .Values.sso.realm }}
+---
 apiVersion: keycloak.org/v1alpha1
 kind: KeycloakRealm
 metadata:
