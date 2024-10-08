@@ -14,6 +14,6 @@ spec:
   client:
     # auto-generated if not supplied
     #id: 123
-    clientId: {{ .id }} #could potentially be eso
-    secret: {{ .secret }} #could potentially be eso
+    clientId: client-secret
+    secret: client-secret
 {{- end }}
